@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import Entrance, Region
 
 if TYPE_CHECKING:
-    from .world import APQuestWorld
+    from .world import SMASWorld
 
 # A region is a container for locations ("checks"), which connects to other regions via "Entrance" objects.
 # Many games will model their Regions after physical in-game places, but you can also have more abstract regions.
@@ -17,21 +17,45 @@ if TYPE_CHECKING:
 # This is why we create regions first, and then later we create the locations (in locations.py).
 
 
-def create_and_connect_regions(world: APQuestWorld) -> None:
+def create_and_connect_regions(world: SMASWorld) -> None:
     create_all_regions(world)
     connect_regions(world)
 
 
-def create_all_regions(world: APQuestWorld) -> None:
+def create_all_regions(world: SMASWorld) -> None:
     # Creating a region is as simple as calling the constructor of the Region class.
-    overworld = Region("Overworld", world.player, world.multiworld)
-    top_left_room = Region("Top Left Room", world.player, world.multiworld)
-    bottom_right_room = Region("Bottom Right Room", world.player, world.multiworld)
-    right_room = Region("Right Room", world.player, world.multiworld)
-    final_boss_room = Region("Final Boss Room", world.player, world.multiworld)
+    menu_region = create_region(multiworld, player, active_locations, 'Menu', None)
 
+    smb3_game_region = create_region(multiworld, player, active_locations, 'smb3_game', None)
+    
+    smb3_w1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_region, None)
+
+    smb3_w1_1_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+    smb3_w1_1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+    smb3_w1_1_exit_1 = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_exit,
+                                           [LocationName.smb3_w1_1_exit])
+    smb3_w1_2_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+    smb3_w1_2_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+    smb3_w1_2_exit_1 = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_2_exit])
+    
     # Let's put all these regions in a list.
-    regions = [overworld, top_left_room, bottom_right_room, right_room, final_boss_room]
+    multiworld.regions += [
+        menu_region,
+        smb3_game,
+        smb3_w1_region,
+        smb3_w1_1_tile,
+        smb3_w1_1_region,
+        smb3_w1_1_exit,
+        smb3_w1_2_tile,
+        smb3_w1_2_region,
+        smb3_w1_2_exit,
+        smb3_w1_3_tile,
+        smb3_w1_3_region,
+        smb3_w1_3_exit,
+        smb3_w1_4_tile,
+        smb3_w1_4_region,
+        smb3_w1_4_exit,
 
     # Some regions may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
@@ -48,28 +72,34 @@ def connect_regions(world: APQuestWorld) -> None:
     # But wait, we no longer have access to the region variables we created in create_all_regions()!
     # Luckily, once you've submitted your regions to multiworld.regions,
     # you can get them at any time using world.get_region(...).
-    overworld = world.get_region("Overworld")
-    top_left_room = world.get_region("Top Left Room")
-    bottom_right_room = world.get_region("Bottom Right Room")
-    right_room = world.get_region("Right Room")
-    final_boss_room = world.get_region("Final Boss Room")
+    menu = world.get_region("Menu")
+    smb3_game = world.get_region("Super Mario Bros. 3")
+    smb3_w1 = world.get_region("SMB3 Grass Land")
+    smb3_w1_1 = world.get_region("SMB3 Grass Land 1")
+    smb3_w1_2 = world.get_region("SMB3 Grass Land 2")
+    smb3_w1_3 = world.get_region("SMB3 Grass Land 3")
+    smb3_w1_4 = world.get_region("SMB3 Grass Land 4")
 
     # Okay, now we can get connecting. For this, we need to create Entrances.
     # Entrances are inherently one-way, but crucially, AP assumes you can always return to the origin region.
     # One way to create an Entrance is by calling the Entrance constructor.
-    overworld_to_bottom_right_room = Entrance(world.player, "Overworld to Bottom Right Room", parent=overworld)
-    overworld.exits.append(overworld_to_bottom_right_room)
+    def connect_regions(world: World, level_to_tile_dict):
+    multiworld: MultiWorld = world.multiworld
+    player: int = world.player
 
-    # You can then connect the Entrance to the target region.
-    overworld_to_bottom_right_room.connect(bottom_right_room)
+    names: typing.Dict[str, int] = {}
 
-    # An even easier way is to use the region.connect helper.
-    overworld.connect(right_room, "Overworld to Right Room")
-    right_room.connect(final_boss_room, "Right Room to Final Boss Room")
+    connect(world, "Menu", LocationName.smb3_game)
+    connect(world, LocationName.smb3_game, LocationName.smb3_w1)
+    connect(world, LocationName.smb3_w1_region, LocationName.smb3_w1_1_tile)
 
-    # The region.connect helper even allows adding a rule immediately.
-    # We'll talk more about rule creation in the set_all_rules() function in rules.py.
-    overworld.connect(top_left_room, "Overworld to Top Left Room", lambda state: state.has("Key", world.player))
+    # Connect regions within levels using rules
+    connect(world, LocationName.smb3_w1_1_region, LocationName.smb3_w1_1_exit)
+    connect(world, LocationName.smb3_w1_2_region, LocationName.smb3_w1_2_exit)
+    connect(world, LocationName.smb3_w1_3_region, LocationName.smb3_w1_3_exit)
+    connect(world, LocationName.smb3_w1_4_region, LocationName.smb3_w1_4_exit)
+    connect(world, LocationName.yoshis_island_castle_region, LocationName.yoshis_island_castle,
+            lambda state: (state.has(ItemName.mario_climb, player)))
 
     # Some Entrances may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
