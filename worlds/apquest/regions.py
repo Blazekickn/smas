@@ -88,16 +88,16 @@ def connect_regions(world: APQuestWorld) -> None:
     player: int = world.player
 
     names: typing.Dict[str, int] = {}
+    if world.options.smb3_game:
+        connect(world, "Menu", LocationName.smb3_game)
+        connect(world, LocationName.smb3_game, LocationName.smb3_w1)
+        connect(world, LocationName.smb3_w1_region, LocationName.smb3_w1_1_tile)
 
-    connect(world, "Menu", LocationName.smb3_game)
-    connect(world, LocationName.smb3_game, LocationName.smb3_w1)
-    connect(world, LocationName.smb3_w1_region, LocationName.smb3_w1_1_tile)
-
-    # Connect regions within levels using rules
-    connect(world, LocationName.smb3_w1_1_region, LocationName.smb3_w1_1_exit)
-    connect(world, LocationName.smb3_w1_2_region, LocationName.smb3_w1_2_exit)
-    connect(world, LocationName.smb3_w1_3_region, LocationName.smb3_w1_3_exit)
-    connect(world, LocationName.smb3_w1_4_region, LocationName.smb3_w1_4_exit)
+        # Connect regions within levels using rules
+        connect(world, LocationName.smb3_w1_1_region, LocationName.smb3_w1_1_exit)
+        connect(world, LocationName.smb3_w1_2_region, LocationName.smb3_w1_2_exit)
+        connect(world, LocationName.smb3_w1_3_region, LocationName.smb3_w1_3_exit)
+        connect(world, LocationName.smb3_w1_4_region, LocationName.smb3_w1_4_exit)
 
     # Some Entrances may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
