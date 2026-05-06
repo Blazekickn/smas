@@ -26,66 +26,119 @@ def create_all_regions(world: SMASWorld) -> None:
     # Creating a region is as simple as calling the constructor of the Region class.
     menu_region = create_region(multiworld, player, active_locations, 'Menu', None)
 
-    smb3_game_region = create_region(multiworld, player, active_locations, 'smb3_game', None)
-    
-    smb3_w1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_region, None)
+    if world.options.smb3_game:
+        smb3_game_region = create_region(multiworld, player, active_locations, 'smb3_game', None)
 
-    smb3_w1_1_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
-    smb3_w1_1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
-    smb3_w1_1_exit_1 = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_exit,
+        smb3_w1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_region, None)
+
+        smb3_w1_1_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_1_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_exit,
                                            [LocationName.smb3_w1_1_exit])
-    smb3_w1_2_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
-    smb3_w1_2_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
-    smb3_w1_2_exit_1 = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+        smb3_w1_2_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_2_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_2_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
                                            [LocationName.smb3_w1_2_exit])
-    
+        smb3_w1_3_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_3_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_3_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_3_exit])                                           
+        smb3_w1_4_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_4_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_4_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_4_exit]) 
+        smb3_w1_fortress_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_fortress_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_fortress_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_fortress_exit])   
+        smb3_w1_5_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_5_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_5_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_5_exit])
+        smb3_w1_6_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_6_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_6_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_6_exit])                                         
+        smb3_w1_airship_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_tile, None)
+        smb3_w1_airship_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_1_region, None)
+        smb3_w1_airship_exit = create_region(multiworld, player, active_locations, LocationName.smb3_w1_2_exit,
+                                           [LocationName.smb3_w1_airship_exit]) 
+ 
+        if world.options.smb3_chests:
+            smb3_w1_house1_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_house1_tile, None)
+            smb3_w1_house1_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_house1_region, None)
+            smb3_w1_house1_chest = create_region(multiworld, player, active_locations, LocationName.smb3_w1_house1_chest, 
+                                           [LocationName.smb3_w1_house1_chest_1])
+                                        
+            smb3_w1_house2_tile = create_region(multiworld, player, active_locations, LocationName.smb3_w1_house2_tile, None)
+            smb3_w1_house2_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_house2_region, None)
+            smb3_w1_house2_chest = create_region(multiworld, player, active_locations, LocationName.smb3_w1_house2_chest, 
+                                           [LocationName.smb3_w1_house2_chest_1]) 
+
+            smb3_w1_4_whitehouse_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_4_whitehouse_region, None)
+            smb3_w1_4_whitehouse_chest = create_region(multiworld, player, active_locations, LocationName.smb3_w1_4_whitehouse_chest, 
+                                           [LocationName.smb3_w1_4_whitehouse_chest]) 
+            smb3_w1_3_chestroom_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_3_chest_region, None)
+            smb3_w1_3_chestroom_chest = create_region(multiworld, player, active_locations, LocationName.smb3_w1_3_chestroom_chest, 
+                                           [LocationName.smb3_w1_3_chestroom_chest]) 
+            smb3_w1_fortress_chestroom_region = create_region(multiworld, player, active_locations, LocationName.smb3_w1_fortress_chestroom_region, None)
+            smb3_w1_fortress_chestroom_chest = create_region(multiworld, player, active_locations, LocationName.smb3_w1_fortress_chestroom_chest, 
+                                           [LocationName.smb3_w1_fortress_chestroom_chest]) 
+ 
+ 
+ 
     # Let's put all these regions in a list.
     multiworld.regions += [
         menu_region,
-        smb3_game,
-        smb3_w1_region,
-        smb3_w1_1_tile,
-        smb3_w1_1_region,
-        smb3_w1_1_exit,
-        smb3_w1_2_tile,
-        smb3_w1_2_region,
-        smb3_w1_2_exit,
-        smb3_w1_3_tile,
-        smb3_w1_3_region,
-        smb3_w1_3_exit,
-        smb3_w1_4_tile,
-        smb3_w1_4_region,
-        smb3_w1_4_exit,
+
+        if world.options.smb3_game:
+            smb3_game,
+            smb3_w1_region,
+            smb3_w1_1_tile,
+            smb3_w1_1_region,
+            smb3_w1_1_exit,
+            smb3_w1_2_tile,
+            smb3_w1_2_region,
+            smb3_w1_2_exit,
+            smb3_w1_3_tile,
+            smb3_w1_3_region,
+            smb3_w1_3_exit,
+            smb3_w1_4_tile,
+            smb3_w1_4_region,
+            smb3_w1_4_exit,
+            smb3_w1_fortress_tile,
+            smb3_w1_fortress_region,
+            smb3_w1_fortress_exit,
+            smb3_w1_5_tile,
+            smb3_w1_5_region,
+            smb3_w1_5_exit,
+            smb3_w1_6_tile,
+            smb3_w1_6_region,
+            smb3_w1_6_exit,
+            smb3_w1_airship_tile,
+            smb3_w1_airship_region,
+            smb3_w1_airship_exit,
 
     # Some regions may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
-    if world.options.hammer:
-        top_middle_room = Region("Top Middle Room", world.player, world.multiworld)
-        regions.append(top_middle_room)
+        if world.options.smb3_chests:
+            smb3_w1_house1_tile,
+            smb3_w1_house1_region,
+            smb3_w1_house1_chest,
+            smb3_w1_house2_tile,
+            smb3_w1_house2_region,
+            smb3_w1_house2_chest,
+            smb3_w1_4_whitehouse_region,
+            smb3_w1_4_whitehouse_chest,
+            smb3_w1_3_chestroom_region,
+            smb3_w1_3_chestroom_chest,
+            smb3_w1_fortress_chestroom_region,
+            smb3_w1_fortress_chestroom_chest,
+
+
 
     # We now need to add these regions to multiworld.regions so that AP knows about their existence.
     world.multiworld.regions += regions
-
-
-def connect_regions(world: APQuestWorld) -> None:
-    # We have regions now, but still need to connect them to each other.
-    # But wait, we no longer have access to the region variables we created in create_all_regions()!
-    # Luckily, once you've submitted your regions to multiworld.regions,
-    # you can get them at any time using world.get_region(...).
-    menu = world.get_region("Menu")
-    smb3_game = world.get_region("Super Mario Bros. 3")
-    smb3_w1 = world.get_region("SMB3 Grass Land")
-    smb3_w1_1 = world.get_region("SMB3 Grass Land 1")
-    smb3_w1_2 = world.get_region("SMB3 Grass Land 2")
-    smb3_w1_3 = world.get_region("SMB3 Grass Land 3")
-    smb3_w1_4 = world.get_region("SMB3 Grass Land 4")
-
-    # Okay, now we can get connecting. For this, we need to create Entrances.
-    # Entrances are inherently one-way, but crucially, AP assumes you can always return to the origin region.
-    # One way to create an Entrance is by calling the Entrance constructor.
-    def connect_regions(world: World, level_to_tile_dict):
-    multiworld: MultiWorld = world.multiworld
-    player: int = world.player
 
     names: typing.Dict[str, int] = {}
     if world.options.smb3_game:
@@ -98,10 +151,17 @@ def connect_regions(world: APQuestWorld) -> None:
         connect(world, LocationName.smb3_w1_2_region, LocationName.smb3_w1_2_exit)
         connect(world, LocationName.smb3_w1_3_region, LocationName.smb3_w1_3_exit)
         connect(world, LocationName.smb3_w1_4_region, LocationName.smb3_w1_4_exit)
+        connect(world, LocationName.smb3_w1_fortress_region, LocationName.smb3_w1_fortress_exit)
+        connect(world, LocationName.smb3_w1_5_region, LocationName.smb3_w1_5_exit)
+        connect(world, LocationName.smb3_w1_6_region, LocationName.smb3_w1_6_exit)
+        connect(world, LocationName.smb3_w1_airship_region, LocationName.smb3_w1_airship_exit)
 
     # Some Entrances may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
     # In this case, we previously created an extra "Top Middle Room" region that we now need to connect to Overworld.
-    if world.options.hammer:
-        top_middle_room = world.get_region("Top Middle Room")
-        overworld.connect(top_middle_room, "Overworld to Top Middle Room")
+        if world.options.chests:
+            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_house1_region, LocationName.smb3_w1_house1_chest)
+            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_house2_region, LocationName.smb3_w1_house2_chest)
+            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_4_whitehouse_region, LocationName.smb3_w1_4_whitehouse_chest)
+            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_3_chestroom_region, LocationName.smb3_w1_3_chestroom_chest)
+            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_fortress_chestroom_region, LocationName.smb3_w1_fortress_chestroom_chest)
