@@ -1,6 +1,6 @@
 {
-	"game": "APQuest",
-	"minimum_ap_version": "0.6.7",
-	"world_version": "2.0.0",
-	"authors": ["NewSoupVi"]
+	"game": "Super Mario All-Stars",
+	"minimum_ap_version": "0.6.9",
+	"world_version": "0.0.1",
+	"authors": ["Blazekickn"]
 }
