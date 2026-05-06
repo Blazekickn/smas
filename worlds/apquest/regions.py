@@ -164,4 +164,6 @@ def create_all_regions(world: SMASWorld) -> None:
             add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_house2_region, LocationName.smb3_w1_house2_chest)
             add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_4_whitehouse_region, LocationName.smb3_w1_4_whitehouse_chest)
             add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_3_chestroom_region, LocationName.smb3_w1_3_chestroom_chest)
-            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_fortress_chestroom_region, LocationName.smb3_w1_fortress_chestroom_chest)
+            add_location_to_region(multiworld, player, active_locations, LocationName.smb3_w1_fortress_chestroom_region, LocationName.smb3_w1_fortress_chestroom_chest,
+                                           lambda state: (state.has(ItemName.mario_leaf, player) or
+                                                        state.has(ItemName.mario_tanooki, player)))
