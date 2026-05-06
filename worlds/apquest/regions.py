@@ -98,8 +98,6 @@ def connect_regions(world: APQuestWorld) -> None:
     connect(world, LocationName.smb3_w1_2_region, LocationName.smb3_w1_2_exit)
     connect(world, LocationName.smb3_w1_3_region, LocationName.smb3_w1_3_exit)
     connect(world, LocationName.smb3_w1_4_region, LocationName.smb3_w1_4_exit)
-    connect(world, LocationName.yoshis_island_castle_region, LocationName.yoshis_island_castle,
-            lambda state: (state.has(ItemName.mario_climb, player)))
 
     # Some Entrances may only exist if the player enables certain options.
     # In our case, the Hammer locks the top middle chest in its own room if the hammer option is enabled.
